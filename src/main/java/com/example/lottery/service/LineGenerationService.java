@@ -5,10 +5,8 @@ import static java.util.stream.Collectors.toList;
 import com.example.lottery.model.Line;
 import com.example.lottery.model.LineNumber;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,12 +18,12 @@ public class LineGenerationService {
 
   private final Random random = new Random();
 
-  Set<Line> generateLines(int numLines) {
-    Set<Line> lineSet = new HashSet<>();
+  List<Line> generateLines(int numLines) {
+    List<Line> lineList = new ArrayList<>();
     for (int i = 0; i < numLines; i++) {
-      lineSet.add(generateLine());
+      lineList.add(generateLine());
     }
-    return lineSet;
+    return lineList;
   }
 
   private Line generateLine() {

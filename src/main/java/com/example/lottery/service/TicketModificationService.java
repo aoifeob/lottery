@@ -5,7 +5,7 @@ import com.example.lottery.exception.TicketNotFoundException;
 import com.example.lottery.model.Line;
 import com.example.lottery.model.Ticket;
 import com.example.lottery.repository.TicketRepository;
-import java.util.Set;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,7 +60,7 @@ public class TicketModificationService {
     return ticket;
   }
 
-  private Ticket saveLinesToTicket(Ticket ticket, Set<Line> additionalLines) {
+  private Ticket saveLinesToTicket(Ticket ticket, List<Line> additionalLines) {
     for (Line line : additionalLines) {
       ticket.getLines().add(line);
     }

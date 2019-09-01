@@ -41,8 +41,9 @@ public class Line {
   @JsonIgnore
   private Ticket ticket;
 
-  @OneToMany(targetEntity = LineNumber.class, cascade = CascadeType.ALL, mappedBy = "line")
+  @OneToMany(cascade = CascadeType.ALL)
   @OrderBy("line_number_id")
+  @JoinColumn(name = "id")
   private List<LineNumber> lineNumbers;
 
   @Column(name = "result")

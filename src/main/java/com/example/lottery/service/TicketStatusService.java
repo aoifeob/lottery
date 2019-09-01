@@ -26,14 +26,16 @@ public class TicketStatusService {
     try {
       Ticket ticket = ticketRepository.findById(ticketId)
           .orElseThrow(() -> new TicketNotFoundException("Ticket " + ticketId + " not found"));
-      ticket = getTicketStatus(ticket);
+      if (!ticket.isStatusChecked()) {
+        ticket = setTicketStatus(ticket);
+      }
       return ResponseEntity.ok().body(ticket);
     } catch (TicketNotFoundException e) {
       return ResponseEntity.notFound().build();
     }
   }
 
-  private Ticket getTicketStatus(Ticket ticket) {
+  private Ticket setTicketStatus(Ticket ticket) {
     return ticketModificationService.setLineResults(ticket);
   }
 

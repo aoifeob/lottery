@@ -17,7 +17,7 @@ public class ResultCalculationService {
     if (allNumbersHaveSameValue(lineNumbers)) {
       return 5;
     }
-    if (firstNumberDifferentWhileSecondAndThirdEqual(lineNumbers)) {
+    if (firstNumberDifferentToSecondAndThird(lineNumbers)) {
       return 1;
     }
     return 0;
@@ -35,10 +35,9 @@ public class ResultCalculationService {
     return lineNumbers.stream().map(LineNumber::getNumber).distinct().count() == 1;
   }
 
-  private boolean firstNumberDifferentWhileSecondAndThirdEqual(List<LineNumber> lineNumbers) {
+  private boolean firstNumberDifferentToSecondAndThird(List<LineNumber> lineNumbers) {
     return lineNumbers.get(0).getNumber() != lineNumbers.get(1).getNumber() &&
-        lineNumbers.get(0).getNumber() != lineNumbers.get(2).getNumber() &&
-        lineNumbers.get(1).getNumber() == lineNumbers.get(2).getNumber();
+        lineNumbers.get(0).getNumber() != lineNumbers.get(2).getNumber();
   }
 
 }
