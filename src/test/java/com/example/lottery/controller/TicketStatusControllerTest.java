@@ -62,8 +62,8 @@ public class TicketStatusControllerTest {
     ticket = ticketRepository.findById(1)
         .orElseThrow(() -> new TicketNotFoundException("Ticket not found"));
     Assert.assertTrue(ticket.isStatusChecked());
-    Assert.assertEquals(10, (int) ticket.getLines().get(0).getResult());
-    Assert.assertEquals(5, (int) ticket.getLines().get(1).getResult());
+    Assert.assertEquals(5, (int) ticket.getLines().get(0).getResult());
+    Assert.assertEquals(10, (int) ticket.getLines().get(1).getResult());
 
   }
 
