@@ -21,3 +21,12 @@ A simple lottery REST interface.
 
 ## Test Coverage
 <img src="https://raw.githubusercontent.com/aoifeob/lottery/master/codeCoverage.png">
+
+## Running Instructions (IntelliJ)
+
+Requirements: Java 8, Maven
+
+* Clone the repository to your local machine and open the project in Intellij
+* Select the `LotteryApplication` configuration and click debug. The service will start on `localhost:8080`
+* Use Postman or CURL to hit the above endpoints
+* Test classes can also be run using IntelliJ
