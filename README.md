@@ -27,6 +27,7 @@ A simple lottery REST interface.
 Requirements: Java 8, Maven
 
 * Clone the repository to your local machine and open the project in Intellij
+* Run `mvn clean install`
 * Select the `LotteryApplication` configuration and click debug. The service will start on `localhost:8080`
 * Use Postman or CURL to hit the above endpoints
 * Test classes can also be run using IntelliJ
