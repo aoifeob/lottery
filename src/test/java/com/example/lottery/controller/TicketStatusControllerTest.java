@@ -10,7 +10,6 @@ import com.example.lottery.model.LineNumber;
 import com.example.lottery.model.Ticket;
 import com.example.lottery.repository.TicketRepository;
 import java.util.Arrays;
-import java.util.List;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,10 +36,10 @@ public class TicketStatusControllerTest {
 
   @Before
   public void setUp() {
-    List<Line> linesList = Arrays
+    Ticket ticket = Ticket.builder().id(1).lines(Arrays
         .asList(new Line(Arrays.asList(new LineNumber(0), new LineNumber(1), new LineNumber(1))),
-            new Line(Arrays.asList(new LineNumber(1), new LineNumber(1), new LineNumber(1))));
-    Ticket ticket = Ticket.builder().id(1).lines(linesList).build();
+            new Line(Arrays.asList(new LineNumber(1), new LineNumber(1), new LineNumber(1)))))
+        .build();
     ticketRepository.save(ticket);
   }
 

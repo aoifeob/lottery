@@ -8,10 +8,8 @@ import com.example.lottery.repository.TicketRepository;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @Slf4j
@@ -32,18 +30,20 @@ public class TicketModificationService {
 
   public ResponseEntity updateTicketLines(int ticketId, int numLines) {
     if (!isValidNumberOfLines(numLines)) {
-      throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-          "Invalid number of lines provided for ticket");
-    }
-    Ticket ticket = ticketRepository.findById(ticketId)
-        .orElseThrow(() -> new TicketNotFoundException("Ticket " + ticketId + " not found"));
-    try {
-      addLinesToTicket(ticket, numLines);
-    } catch (TicketNotEditableException e) {
-      log.error("Could not add lines to ticket {}", ticketId, e);
+      log.debug("Invalid number of lines provided");
       return ResponseEntity.unprocessableEntity().build();
     }
-    return ResponseEntity.ok().body(ticket);
+    try {
+      Ticket ticket = ticketRepository.findById(ticketId)
+          .orElseThrow(() -> new TicketNotFoundException("Ticket " + ticketId + " not found"));
+      addLinesToTicket(ticket, numLines);
+      return ResponseEntity.ok().body(ticket);
+    } catch (TicketNotFoundException e) {
+      return ResponseEntity.notFound().build();
+    } catch (TicketNotEditableException e) {
+      log.debug("Ticket {} cannot be edited", ticketId);
+      return ResponseEntity.unprocessableEntity().build();
+    }
   }
 
   private boolean isValidNumberOfLines(int numLines) {
