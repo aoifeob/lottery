@@ -27,7 +27,7 @@ public class TicketStatusService {
       Ticket ticket = ticketRepository.findById(ticketId)
           .orElseThrow(() -> new TicketNotFoundException("Ticket " + ticketId + " not found"));
       if (!ticket.isStatusChecked()) {
-        ticket = setTicketStatus(ticket);
+        setTicketStatus(ticket);
       }
       return ResponseEntity.ok().body(ticket);
     } catch (TicketNotFoundException e) {
