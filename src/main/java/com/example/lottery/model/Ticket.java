@@ -37,7 +37,7 @@ public class Ticket {
   private boolean isStatusChecked;
 
   @OneToMany(cascade = CascadeType.ALL)
-  @OrderBy("result desc")
+  @OrderBy("result")
   @JoinColumn(name = "id")
   private List<Line> lines;
 
