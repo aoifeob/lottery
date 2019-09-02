@@ -73,7 +73,7 @@ public class TicketModificationService {
       line.setResult(result);
     }
     ticket.setStatusChecked(true);
-    return ticketRepository.save(ticket);
+    return ticketRepository.saveAndFlush(ticket);
   }
 
   private boolean canAddLines(Ticket ticket) {

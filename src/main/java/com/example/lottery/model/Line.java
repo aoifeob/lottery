@@ -14,13 +14,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "line")
 public class Line {
@@ -43,7 +43,7 @@ public class Line {
 
   @OneToMany(cascade = CascadeType.ALL)
   @OrderBy("line_number_id")
-  @JoinColumn(name = "id")
+  @JoinColumn(name = "line_id")
   private List<LineNumber> lineNumbers;
 
   @Column(name = "result")
